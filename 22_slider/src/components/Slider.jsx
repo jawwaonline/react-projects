@@ -24,13 +24,14 @@ export function Slider({ images, width }) {
   const position = {
     transform: `translateX(-${counter * 100}%)`
   };
-
+  const maxwidth = `w-[${width}px]`;
   return (
     <>
+      {/*  */}
       <section
-        className={`slider-wrapper flex justify-center outline-4 outline-dotted relative outline-zinc-700 overflow-hidden ${
-          width ? `max-w-[${width}]` : 'max-w-[300px]'
-        }`}
+        className={`slider-wrapper flex justify-center outline-4 outline-dotted relative outline-zinc-700 overflow-hidden 
+       `}
+        style={width ? { width: width } : { width: '300px' }}
       >
         <div
           onClick={moveleftonclick}
@@ -46,11 +47,12 @@ export function Slider({ images, width }) {
         </div>
         <div
           style={position}
-          className="image-holder flex ease-in-out duration-500 transition"
+          className="image-holder flex w-full ease-in-out duration-500 transition"
         >
           {images?.map((image) => {
             return (
               <img
+                className="min-w-[100%]"
                 key={image?.url}
                 src={image?.url}
                 alt={image?.title}

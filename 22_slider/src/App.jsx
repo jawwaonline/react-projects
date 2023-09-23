@@ -22,7 +22,7 @@ function App() {
         <h2 className="text-red-600 font-bold text-3xl my-4">
           Creating a Slider Component
         </h2>
-        <Slider images={images} />
+        <Slider images={images} width={600} />
       </main>
     </>
   );
