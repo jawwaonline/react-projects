@@ -3,7 +3,7 @@ import {
   getFactsOne,
   getFactsRandom,
   getRandomWordOfText,
-  getImageUrl,
+  getImageUrl
 } from './assets/library/brain';
 
 // TODO CREATING CONSTANTS FILE
@@ -18,18 +18,21 @@ export default function App() {
   const [facts, setFacts] = useState();
   const [queryword, setQueryWord] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-  const Error = useRef(false);
+  const [error, setError] = useState(false);
 
   // CREATING HOOKS GETTINGSETTINGIMAGEURL
 
-  const gettingSettingImageUrl = () => {
-    getImageUrl(queryword).then((response) => {
+  const gettingSettingImageUrl = async () => {
+    await getImageUrl(queryword).then((response) => {
+      setError(false);
       if (response.Status.Okay) {
-        Error.current = false;
+        const url = response.ImageUrl;
         setImageUrl(url);
       } else {
-        console.log('There has been an Error ' + response.Status.Error);
-        Error.current = true;
+        console.log(
+          'There has been an Error ' + response.Status.Error
+        );
+        setError(true);
       }
     });
   };
@@ -53,7 +56,7 @@ export default function App() {
   }, [facts]);
 
   return (
-    <div className="h-screen w-screen bg-slate-400 flex flex-col">
+    <>
       <section className="bg-slate-900 max-w-[600px] mx-auto h-full px-10">
         <header className="outline-dotted outline-red-400 mx-auto mt-10 p-5">
           <h1 className="text-yellow-600 text-3xl font-bold text-center">
@@ -79,12 +82,15 @@ export default function App() {
               new Cat Fact{' '}
             </button>
           </article>
-          <img src={imageUrl} className="w-full h-auto rounded-lg mt-10" />
+          <img
+            src={imageUrl}
+            className="w-full h-auto rounded-lg mt-10"
+          />
         </main>
         <div className="text-2xl text-red-600 font-bold flex justify-center">
-          {Error ? <p>ERROR !!!!!</p> : <p></p>}
+          {error ? <p>ERROR !!!!!</p> : <p></p>}
         </div>
       </section>
-    </div>
+    </>
   );
 }

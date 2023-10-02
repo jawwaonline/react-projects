@@ -1,3 +1,15 @@
+// import {
+//   FACTS_API_URL,
+//   IMAGE_API_URL,
+//   IMAGE_API_URL_PREFIX,
+//   IMAGE_API_URL_APPENDIX
+// } from './constants';
+
+const FACTS_API_URL = 'https://catfact.ninja/fact';
+const IMAGE_API_URL = 'https://cataas.com';
+const IMAGE_API_URL_PREFIX = '/cat/says/';
+const IMAGE_API_URL_APPENDIX = '?size=50&color=red&json=true';
+
 export async function getFactsOne() {
   const response = await fetch(FACTS_API_URL);
   // ERROR HANDLING HAS TO BE INTEGRATED
@@ -20,7 +32,9 @@ export async function getFactsRandom() {
 export function getRandomWordOfText(text) {
   const textArray = text.split(' ');
   const textArrayLength = textArray.length;
-  const randomArrayNumber = Math.floor(Math.random() * textArrayLength);
+  const randomArrayNumber = Math.floor(
+    Math.random() * textArrayLength
+  );
   const RandomWord = textArray.splice(randomArrayNumber - 1, 1);
   return RandomWord;
 }
@@ -28,7 +42,10 @@ export function getRandomWordOfText(text) {
 export async function getImageUrl(queryword) {
   try {
     const response = await fetch(
-      IMAGE_API_URL + IMAGE_API_URL_PREFIX + queryword + IMAGE_API_URL_APPENDIX
+      IMAGE_API_URL +
+        IMAGE_API_URL_PREFIX +
+        queryword +
+        IMAGE_API_URL_APPENDIX
     );
     const json = await response.json();
     const ImageUrl = IMAGE_API_URL + json.url;
