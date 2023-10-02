@@ -1,14 +1,9 @@
-// import {
-//   FACTS_API_URL,
-//   IMAGE_API_URL,
-//   IMAGE_API_URL_PREFIX,
-//   IMAGE_API_URL_APPENDIX
-// } from './constants';
-
-const FACTS_API_URL = 'https://catfact.ninja/fact';
-const IMAGE_API_URL = 'https://cataas.com';
-const IMAGE_API_URL_PREFIX = '/cat/says/';
-const IMAGE_API_URL_APPENDIX = '?size=50&color=red&json=true';
+import {
+  FACTS_API_URL,
+  IMAGE_API_URL,
+  IMAGE_API_URL_PREFIX,
+  IMAGE_API_URL_APPENDIX
+} from './constants';
 
 export async function getFactsOne() {
   const response = await fetch(FACTS_API_URL);
