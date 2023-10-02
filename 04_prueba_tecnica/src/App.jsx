@@ -57,9 +57,9 @@ export default function App() {
 
   return (
     <>
-      <section className="bg-slate-900 max-w-[600px] mx-auto h-full px-10">
+      <section className="bg-slate-900 max-w-[600px] mx-auto h-full px-10 py-10">
         <header className="outline-dotted outline-red-400 mx-auto mt-10 p-5">
-          <h1 className="text-yellow-600 text-3xl font-bold text-center">
+          <h1 className="text-yellow-600 font-bold text-center text-lg sm:text-2xl">
             Kitten Api
           </h1>
         </header>
@@ -70,13 +70,13 @@ export default function App() {
           </span>
           <article className="flex flex-row justify-between">
             <button
-              className="bg-orange-300 rounded-lg py-2 px-5"
+              className="bg-orange-300 rounded-lg py-2 px-5 text-xs sm:text-base"
               onClick={gettingSettingImageUrl}
             >
               new Cat Image
             </button>
             <button
-              className="bg-orange-300 rounded-lg py-2 px-5"
+              className="bg-orange-300 rounded-lg py-2 px-5 text-xs sm:text-base"
               onClick={gettingSettingCatFact}
             >
               new Cat Fact{' '}
