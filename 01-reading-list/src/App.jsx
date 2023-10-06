@@ -12,9 +12,18 @@ export default function App() {
   // WHY DOES THIS WORK ???????
   // TODO HANDLE IT WITH OTHER BUTTON
   function setFavorite(ISBN) {
-    const currentBook = findBook(ISBN);
-    currentBook.favorite = !currentBook.favorite;
-    setBooks([...Books]);
+    // const currentBook = findBook(ISBN);
+    // currentBook.favorite = !currentBook.favorite;
+    // setBooks([...Books]);
+
+    const newBooks = Books.map((Book) => {
+      if (Book.ISBN === ISBN) {
+        Book.favorite = !Book.favorite;
+      }
+      return Book;
+    });
+
+    setBooks([...newBooks]);
     console.log(Books);
   }
 
@@ -51,7 +60,7 @@ export default function App() {
             Modal ? 'blur-lg' : 'blur-none'
           }`}
         >
-          {Books.map(({ ISBN, cover, title }) => {
+          {Books.map(({ ISBN, cover, title, favorite }) => {
             return (
               // ------------- ONE BOOK ARTICLE -------------
 
@@ -68,6 +77,16 @@ export default function App() {
                 >
                   click
                 </button>
+                <button
+                  onClick={() => {
+                    setFavorite(ISBN);
+                  }}
+                  type="button"
+                  className="absolute top-32 right-4"
+                >
+                  {favorite ? 'Unfavorite' : 'Favorite'}
+                </button>
+
                 <img
                   className="h-40 relative object-cover items-center mb-0 ease-in-out duration-300 group-hover:scale-110  shadow-slate-700 shadow-2xl"
                   src={cover}
