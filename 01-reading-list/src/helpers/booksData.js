@@ -11,7 +11,8 @@ export default function BookDataParsed(fetchedData) {
       synopsis: book.book.synopsis,
       year: book.book.year,
       ISBN: book.book.ISBN,
-      author: book.book.author
+      author: book.book.author,
+      favorite: false
     };
   });
 }
