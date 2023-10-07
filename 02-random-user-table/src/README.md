@@ -1,8 +1,7 @@
-Esto es una prueba técnica de una empresa europea para un sueldo de 55000 €/anuales.
+Create a application like this one : https://midu-react-11.surge.sh/
+by using this API https://randomuser.me/.
 
-El objetivo de esta prueba técnica es crear una aplicación similar a la que se proporciona en este enlace: https://midu-react-11.surge.sh/. Para lograr esto, debe usar la API proporcionada por https://randomuser.me/.
-
-Los pasos a seguir:
+Steps
 
 [x] Fetch 100 rows of data using the API.
 [x] Display the data in a table format, similar to the example.
