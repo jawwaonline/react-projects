@@ -5,9 +5,13 @@ import './App.css';
 function App() {
   const USERS_API = 'https://randomuser.me/api/?results=100';
 
-  const [Users, setUsers] = useState([]);
-  const [color, setColor] = useState(false);
   const OriginalUsers = useRef([]);
+  const PreviousUsers = useRef([]);
+  const [Users, setUsers] = useState([]);
+  const [orderedUser, setOrderedUsers] = useState([]);
+
+  const [orderedByCountry, setOrderedByCountry] = useState(false);
+  const [color, setColor] = useState(false);
 
   useEffect(() => {
     fetch(USERS_API)
@@ -35,13 +39,29 @@ function App() {
     setUsers(OriginalUsers.current);
   }
 
+  function newOrder() {
+    if (!orderedByCountry) {
+      PreviousUsers.current = Users;
+      const newOrderedUsers = [...Users].sort((a, b) => {
+        return a.location.country.localeCompare(b.location.country);
+      });
+      setUsers(newOrderedUsers);
+      setOrderedByCountry(!orderedByCountry);
+      return;
+    }
+    setUsers(PreviousUsers.current);
+    setOrderedByCountry(!orderedByCountry);
+  }
+
   return (
     <>
       <h1>Random User Table</h1>
       {/* ----- FILTER ------ */}
 
       <button onClick={colorizing}>colorize</button>
-      <button>order by country</button>
+      <button onClick={newOrder}>
+        {orderedByCountry ? 'unorder list' : 'order by Country'}
+      </button>
       <button onClick={resetUsers}>reset state</button>
       <input placeholder="filter by countryname"></input>
 
@@ -62,7 +82,7 @@ function App() {
             {Users.map((User) => {
               return (
                 <tr
-                  key={User.email}
+                  key={User.login.uuid}
                   className={color ? 'colorizing' : 'colorless'}
                 >
                   <td>
